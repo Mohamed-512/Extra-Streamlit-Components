@@ -1,5 +1,5 @@
 import streamlit as st
-import Components as stx
+import extra_streamlit_components as stx
 
 st.set_page_config(layout="centered")
 

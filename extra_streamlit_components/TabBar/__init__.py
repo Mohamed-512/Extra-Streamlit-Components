@@ -2,7 +2,7 @@ import os
 import streamlit.components.v1 as components
 from dataclasses import dataclass
 from typing import List
-from Components import IS_RELEASE
+from extra_streamlit_components import IS_RELEASE
 
 if IS_RELEASE:
     absolute_path = os.path.dirname(os.path.abspath(__file__))

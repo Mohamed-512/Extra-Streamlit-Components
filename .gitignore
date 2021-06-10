@@ -132,4 +132,4 @@ dmypy.json
 .idea
 package-lock.json
 .prettierc
-Components/setup.*
+extra_streamlit_components/setup.*
