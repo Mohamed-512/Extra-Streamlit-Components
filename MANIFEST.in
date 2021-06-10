@@ -1,0 +1,2 @@
+recursive-include extra_streamlit_components/BouncingImage/frontend/build *
+recursive-include extra_streamlit_components/TabBar/frontend/build *
