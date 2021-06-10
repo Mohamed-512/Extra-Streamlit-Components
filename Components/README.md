@@ -1,4 +1,4 @@
-# Extra-Streamlit-Components
+# Extra Streamlit Components
 
 An all-in-one place, to find complex or just not available components by default on streamlit.
 
@@ -29,4 +29,3 @@ An all-in-one place, to find complex or just not available components by default
 
   ***Returns***:
     - is_animating: bool
-
