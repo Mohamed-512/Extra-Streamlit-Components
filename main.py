@@ -12,7 +12,7 @@ def show_splash():
     if st.experimental_get_query_params().get("t") is None:
         st.experimental_set_query_params(t=int(time.time()))
 
-    return stx.bouncing_image(image_source=image_url, animate=True, animation_time=2000, height=145, width=320)
+    return stx.bouncing_image(image_source=image_url, animate=True, animation_time=2000, height=290, width=1000)
 
 
 def show_data():
@@ -20,7 +20,7 @@ def show_data():
         stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
         stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
         stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
-    ])
+    ], default=1)
 
     st.info(f"{chosen_id=}")
 
