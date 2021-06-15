@@ -6,7 +6,6 @@ import {
 import React from "react"
 
 import { withStyles, createStyles } from "@material-ui/core/styles"
-import Paper from "@material-ui/core/Paper"
 import Grow from "@material-ui/core/Grow"
 import CardMedia from "@material-ui/core/CardMedia"
 
