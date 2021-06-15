@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="extra_streamlit_components",
-    version="0.0.8",
+    version="0.0.9",
     author="Mohamed Abdou",
     author_email="matex512@gmail.com",
     description="An all-in-one place, to find complex or just not available components by default on streamlit.",
