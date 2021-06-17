@@ -1,5 +1,7 @@
 # Extra-Streamlit-Components
 
+[![Downloads](https://pepy.tech/badge/extra-streamlit-components)](https://pepy.tech/project/extra-streamlit-components)
+
 An all-in-one place, to find complex or just not available components by default on streamlit.
 
 ## Components
