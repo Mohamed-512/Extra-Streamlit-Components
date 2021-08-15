@@ -130,7 +130,10 @@ dmypy.json
 
 
 .idea
+.idea/
 package-lock.json
-.prettierc
+.prettierrc
 extra_streamlit_components/setup.*
-build_and_upload_to_twine
+build_and_upload_to_twine*
+extra_streamlit_components/*/frontend/node_modules/
+extra_streamlit_components/*/frontend/build/
