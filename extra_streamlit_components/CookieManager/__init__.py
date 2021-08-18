@@ -22,11 +22,11 @@ class CookieManager:
             self.use_streamlit_state = True
             if 'cookies' not in st.session_state.keys() or st.session_state.cookies == {}:
                 st.session_state['cookies'] = self.cookies
-            elif st.session_state.get('cookies') is None:
+            elif st.session_state.cookies is None:
                 st.session_state['cookies'] = {}
 
     def get(self, cookie: str, key: any = 0) -> any:
-        if self.use_streamlit_state:
+        if self.use_streamlit_state and st.session_state.cookies is not None:
             return st.session_state.cookies.get(cookie)
         return self.cookies.get(cookie)
 

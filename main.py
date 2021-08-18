@@ -83,9 +83,9 @@ def show_stepper_bar():
 
 
 show_cookie_manager_controls()
-st.write("_______")
-show_top_bar()
-st.write("_______")
-show_bouncing_image()
-st.write("_______")
-show_stepper_bar()
+# st.write("_______")
+# show_top_bar()
+# st.write("_______")
+# show_bouncing_image()
+# st.write("_______")
+# show_stepper_bar()

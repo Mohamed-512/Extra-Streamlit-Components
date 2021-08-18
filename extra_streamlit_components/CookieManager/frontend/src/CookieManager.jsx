@@ -4,18 +4,19 @@ import {
   withStreamlitConnection,
 } from "streamlit-component-lib"
 import React from 'react'
-import { instanceOf } from "prop-types"
 
-import { withCookies, Cookies } from "react-cookie"
-
+import Cookies from 'universal-cookie';
 /**
  * This is a React-based component template. The `render()` function is called
  * automatically when your component should be re-rendered.
  */
 class CookieManager extends StreamlitComponentBase<State> {
+  state = {}
   componentDidMount = ()=>{
     Streamlit.setComponentReady()
-
+  
+    this.state['cookies']= new Cookies(); 
+    
     const { args } = this.props
 
     const method = args["method"]
@@ -41,7 +42,6 @@ class CookieManager extends StreamlitComponentBase<State> {
         break
     }
 
-    console.log(output);
     Streamlit.setComponentValue(output)
   }
 
@@ -50,31 +50,27 @@ class CookieManager extends StreamlitComponentBase<State> {
   }
 
   setCookie = (cookie, value) => {
-    const { cookies } = this.props
+    const { cookies } = this.state
     cookies.set(cookie, value, { path: "/", samesite: "strict" })
     return true
   }
 
   getCookie = (cookie) => {
-    const { cookies } = this.props
+    const { cookies } = this.state
     const value = cookies.cookies[cookie]
     return value
   }
 
   deleteCookie = (cookie) => {
-    const { cookies } = this.props
+    const { cookies } = this.state
     cookies.remove(cookie, { path: "/", samesite: "strict" })
     return true
   }
 
   getAllCookies = () => {
-    const { cookies } = this.props
-    return cookies.cookies
+    const { cookies } = this.state
+    return cookies.getAll()
   }
 }
 
-CookieManager.propTypes = {
-  cookies: instanceOf(Cookies).isRequired,
-}
-
-export default withStreamlitConnection(withCookies(CookieManager))
+export default withStreamlitConnection(CookieManager)
