@@ -1,4 +1,5 @@
 import streamlit as st
+# import extra_streamlit_components_ as stx
 import extra_streamlit_components as stx
 
 
@@ -12,7 +13,7 @@ def show_cookie_manager_controls():
     cookies = cookie_manager.get_all()
     st.write(cookies)
 
-    c1, c2, c3 = st.beta_columns(3)
+    c1, c2, c3 = st.columns(3)
 
     with c1:
         st.subheader("Get Cookie:")
@@ -60,7 +61,7 @@ def show_top_bar():
         stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
     ], default=1)
 
-    st.info(f"chosen_id =", chosen_id)
+    st.info(f"chosen_id = {chosen_id}")
 
     st.code("""
     chosen_id = stx.tab_bar(data=[
