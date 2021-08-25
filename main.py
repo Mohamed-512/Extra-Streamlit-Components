@@ -60,7 +60,7 @@ def show_top_bar():
         stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
     ], default=1)
 
-    st.info(f"{chosen_id=}")
+    st.info(f"chosen_id =", chosen_id)
 
     st.code("""
     chosen_id = stx.tab_bar(data=[
