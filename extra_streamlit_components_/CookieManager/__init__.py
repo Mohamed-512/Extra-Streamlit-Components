@@ -1,6 +1,7 @@
 import os
 import streamlit.components.v1 as components
 import streamlit as st
+import uuid
 
 from extra_streamlit_components_ import IS_RELEASE
 
@@ -57,6 +58,6 @@ class CookieManager:
         else:
             data = self.cookies
         if data is None or data == {}:
-            self.cookies = self.cookie_manager(method="getAll", key="BB")
+            self.cookies = self.cookie_manager(method="getAll", key=str(uuid.uuid4()))
             return self.cookies
         return data
