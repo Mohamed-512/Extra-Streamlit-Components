@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="extra_streamlit_components_",
+    name="extra_streamlit_components",
     version="0.1.4",
     author="Mohamed Abdou",
     author_email="matex512@gmail.com",
