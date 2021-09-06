@@ -1,5 +1,4 @@
 import streamlit as st
-# import extra_streamlit_components_ as stx
 import extra_streamlit_components as stx
 
 
