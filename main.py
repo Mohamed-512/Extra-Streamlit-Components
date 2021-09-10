@@ -58,9 +58,9 @@ def show_top_bar():
         stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
         stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
         stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
-    ], default=1)
+    ], default=1, return_type=int)
 
-    st.info(f"chosen_id = {chosen_id}")
+    st.info(f"chosen_id = {chosen_id}, type = {type(chosen_id)}")
 
     st.code("""
     chosen_id = stx.tab_bar(data=[
