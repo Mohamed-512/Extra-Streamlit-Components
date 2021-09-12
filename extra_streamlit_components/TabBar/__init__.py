@@ -22,8 +22,16 @@ class TabBarItemData:
         return {"id": self.id, "title": self.title, "description": self.description}
 
 
-def tab_bar(data: List[TabBarItemData], default=None, key=None):
+def tab_bar(data: List[TabBarItemData], default=None, return_type=str, key=None):
     data = list(map(lambda item: item.to_dict(), data))
     component_value = _component_func(data=data, selectedId=default, key=key, default=default)
 
-    return component_value
+    try:
+        if return_type == str:
+            return str(component_value)
+        elif return_type == int:
+            return int(component_value)
+        elif return_type == float:
+            return float(component_value)
+    except:
+        return component_value
