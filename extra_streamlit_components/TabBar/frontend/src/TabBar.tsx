@@ -27,7 +27,6 @@ class TabBar extends StreamlitComponentBase<State> {
   }
 
   MenuItem = ({ item, selectedId }: { item: MenuItem; selectedId: number }) => {
-    console.log(selectedId)
 
     return (
       <div className={`menu-item ${selectedId == item.id ? "active" : ""}`}>

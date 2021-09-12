@@ -2,6 +2,7 @@ import os
 import streamlit.components.v1 as components
 import streamlit as st
 import uuid
+import datetime
 
 from extra_streamlit_components import IS_RELEASE
 
@@ -31,11 +32,11 @@ class CookieManager:
             return st.session_state.cookies.get(cookie)
         return self.cookies.get(cookie)
 
-    def set(self, cookie, val, key: any = 0):
+    def set(self, cookie, val, expires_at=datetime.datetime.now() + datetime.timedelta(days=1), key: any = 0):
         if cookie is None or cookie == "":
             return
-
-        self.cookie_manager(method="set", cookie=cookie, value=val, key=f"1{key}")
+        expires_at = expires_at.isoformat()
+        self.cookie_manager(method="set", cookie=cookie, value=val, expires_at=expires_at, key=f"1{key}")
 
         if self.use_streamlit_state:
             st.session_state.cookies.update({cookie: val})

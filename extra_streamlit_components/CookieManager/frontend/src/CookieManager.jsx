@@ -22,12 +22,13 @@ class CookieManager extends StreamlitComponentBase<State> {
     const method = args["method"]
     const cookie = args["cookie"]
     const value = args["value"]
-  
+    const expires_at = args["expires_at"]
+
     let output = null
 
     switch (method) {
       case "set":
-        output = this.setCookie(cookie, value)
+        output = this.setCookie(cookie, value, expires_at)
         break
       case "get":
         output = this.getCookie(cookie)
@@ -49,9 +50,9 @@ class CookieManager extends StreamlitComponentBase<State> {
     return <div></div>
   }
 
-  setCookie = (cookie, value) => {
+  setCookie = (cookie, value, expires_at) => {
     const { cookies } = this.state
-    cookies.set(cookie, value, { path: "/", samesite: "strict" })
+    cookies.set(cookie, value, { path: "/", samesite: "strict", expires: new Date(expires_at) })
     return true
   }
 
