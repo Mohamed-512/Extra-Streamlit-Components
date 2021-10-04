@@ -10,35 +10,38 @@ Firstly, add `import extra_streamlit_components as stx`
 
 - ### Cookie Manager
   The long awaited between-sessions in-browser cookies store and manager! It stores cookies in a strict same-site behaviour. 
+
+  To add an expiry date to a cookie use the `expires_at` parameter in the set function. By default, it will expire after 1 day.
   
   **P.S.** For best experience use _streamlit>=0.84.0_
-  ```python
-  cookie_manager = stx.CookieManager()
+    ```python
+    import datetime
+    cookie_manager = stx.CookieManager()
 
-  st.subheader("All Cookies:")
-  cookies = cookie_manager.get_all()
-  st.write(cookies)
+    st.subheader("All Cookies:")
+    cookies = cookie_manager.get_all()
+    st.write(cookies)
  
-  c1, c2, c3 = st.beta_columns(3)
-  with c1:
-    st.subheader("Get Cookie:")
-    cookie = st.text_input("Cookie", key="0")
-    clicked = st.button("Get")
-    if clicked:
-        value = cookie_manager.get(cookie)
-        st.write(value)
-  with c2:
-    st.subheader("Set Cookie:")
-    cookie = st.text_input("Cookie", key="1")
-    val = st.text_input("Value")
-    if st.button("Add"):
-        cookie_manager.set(cookie, val)
-  with c3:
-    st.subheader("Delete Cookie:")
-    cookie = st.text_input("Cookie", key="2")
-    if st.button("Delete"):
-        cookie_manager.delete(cookie)
-  ```
+    c1, c2, c3 = st.beta_columns(3)
+    with c1:
+      st.subheader("Get Cookie:")
+      cookie = st.text_input("Cookie", key="0")
+      clicked = st.button("Get")
+      if clicked:
+          value = cookie_manager.get(cookie)
+          st.write(value)
+    with c2:
+      st.subheader("Set Cookie:")
+      cookie = st.text_input("Cookie", key="1")
+      val = st.text_input("Value")
+      if st.button("Add"):
+          cookie_manager.set(cookie, val, expires_at=datetime.datetime(year=2022, month=2, day=2))
+    with c3:
+      st.subheader("Delete Cookie:")
+      cookie = st.text_input("Cookie", key="2")
+      if st.button("Delete"):
+          cookie_manager.delete(cookie)
+    ```
 
   ![](Demo_Assets/cookie_manager.gif)
 

@@ -14,7 +14,7 @@ class CookieManager extends StreamlitComponentBase<State> {
   state = {}
   componentDidMount = ()=>{
     Streamlit.setComponentReady()
-  
+
     this.state['cookies']= new Cookies(); 
     
     const { args } = this.props
@@ -58,7 +58,7 @@ class CookieManager extends StreamlitComponentBase<State> {
 
   getCookie = (cookie) => {
     const { cookies } = this.state
-    const value = cookies.cookies[cookie]
+    const value = cookies.getAll()[cookie]
     return value
   }
 

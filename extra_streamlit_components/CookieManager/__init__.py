@@ -17,15 +17,14 @@ else:
 class CookieManager:
     def __init__(self):
         self.cookie_manager = _component_func
-        self.cookies = self.cookie_manager(method="getAll", key="AA")
-
+        self.cookies = self.cookie_manager(method="getAll", key="tmp")
         self.use_streamlit_state = False
+
         if st is not None and int(str(st.__version__).split(".")[1]) >= 84:
             self.use_streamlit_state = True
-            if 'cookies' not in st.session_state.keys() or st.session_state.cookies == {}:
+            if 'cookies' not in st.session_state or ('cookies' in st.session_state and st.session_state.cookies is None):
                 st.session_state['cookies'] = self.cookies
-            elif st.session_state.cookies is None:
-                st.session_state['cookies'] = {}
+            st.session_state.pop("tmp")
 
     def get(self, cookie: str, key: any = 0) -> any:
         try:
@@ -33,6 +32,9 @@ class CookieManager:
                 return st.session_state.cookies.get(cookie)
             return self.cookies.get(cookie)
         except:
+            c = self.get_all()
+            if c is not None:
+                c.get(cookie)
             return None
 
     def set(self, cookie, val, expires_at=datetime.datetime.now() + datetime.timedelta(days=1), key: any = 0):
