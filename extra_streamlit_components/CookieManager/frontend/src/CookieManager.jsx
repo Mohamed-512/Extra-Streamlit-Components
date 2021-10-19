@@ -3,20 +3,20 @@ import {
   StreamlitComponentBase,
   withStreamlitConnection,
 } from "streamlit-component-lib"
-import React from 'react'
+import React from "react"
 
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie"
 /**
  * This is a React-based component template. The `render()` function is called
  * automatically when your component should be re-rendered.
  */
 class CookieManager extends StreamlitComponentBase<State> {
   state = {}
-  componentDidMount = ()=>{
+  componentDidMount = () => {
     Streamlit.setComponentReady()
 
-    this.state['cookies']= new Cookies(); 
-    
+    this.state["cookies"] = new Cookies()
+
     const { args } = this.props
 
     const method = args["method"]
@@ -52,7 +52,11 @@ class CookieManager extends StreamlitComponentBase<State> {
 
   setCookie = (cookie, value, expires_at) => {
     const { cookies } = this.state
-    cookies.set(cookie, value, { path: "/", samesite: "strict", expires: new Date(expires_at) })
+    cookies.set(cookie, value, {
+      path: "/",
+      samesite: "strict",
+      expires: new Date(expires_at),
+    })
     return true
   }
 
