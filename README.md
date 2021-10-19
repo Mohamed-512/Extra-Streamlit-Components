@@ -13,7 +13,6 @@ Firstly, add `import extra_streamlit_components as stx`
 
   To add an expiry date to a cookie use the `expires_at` parameter in the set function. By default, it will expire after 1 day.
   
-  **P.S.** For best experience use _streamlit>=0.84.0_
     ```python
     import datetime
     cookie_manager = stx.CookieManager()
