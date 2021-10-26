@@ -8,6 +8,38 @@ An all-in-one place, to find complex or just not available components by default
 
 Firstly, add `import extra_streamlit_components as stx`
 
+- ### Router
+- Route to specific pages in Streamlit. This leverages the use of query parameters to make custom routes in your Streamlit application. For best experience, make sure to include the st.cache function decorator while initializing the Router object.
+  ```python
+    @st.cache(allow_output_mutation=True, hash_funcs={"_thread.RLock": lambda _: None})
+    def init_router():
+        return stx.Router({"/home": home, "/landing": landing})
+
+    def home():
+        return st.write("This is a home page")
+
+    def landing():
+        return st.write("This is the landing page")
+
+    router = init_router()
+    router.show_route_view()
+
+    c1, c2, c3 = st.columns(3)
+
+    with c1:
+        st.header("Current route")
+        current_route = router.get_url_route()
+        st.write(f"{current_route}")
+    with c2:
+        st.header("Set route")
+        new_route = st.text_input("route")
+        if st.button("Route now!"):
+            router.route(new_route)
+    with c3:
+        st.header("Session state")
+        st.write(st.session_state)
+  ```
+
 - ### Cookie Manager
   The long awaited between-sessions in-browser cookies store and manager! It stores cookies in a strict same-site behaviour. 
 
@@ -57,7 +89,6 @@ Firstly, add `import extra_streamlit_components as stx`
   ```
 
   ![](Demo_Assets/tab_bar.gif)
-
 
 - ### BouncingImage
   Probably not the best naming but this component, renders an image by its path or url, and animates by zooming in and
