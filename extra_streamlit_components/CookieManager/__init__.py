@@ -1,4 +1,6 @@
 import os
+
+import streamlit as st
 import streamlit.components.v1 as components
 import datetime
 
@@ -13,22 +15,29 @@ else:
 
 
 class CookieManager:
-    def __init__(self):
+    def __init__(self, key="init"):
+        print("Making new object")
         self.cookie_manager = _component_func
+        self.cookies = self.cookie_manager(method="getAll", key=key, default={})
 
-    def get(self, cookie: str, key="get") -> any:
-        return self.cookie_manager(method="get", cookie=cookie, key=key)
+    def get(self, cookie: str):
+        return self.cookies.get(cookie)
 
     def set(self, cookie, val, expires_at=datetime.datetime.now() + datetime.timedelta(days=1), key="set"):
         if cookie is None or cookie == "":
             return
         expires_at = expires_at.isoformat()
-        self.cookie_manager(method="set", cookie=cookie, value=val, expires_at=expires_at, key=key)
+        did_add = self.cookie_manager(method="set", cookie=cookie, value=val, expires_at=expires_at, key=key, default=False)
+        if did_add:
+            self.cookies[cookie] = val
 
     def delete(self, cookie, key="delete"):
         if cookie is None or cookie == "":
             return
-        self.cookie_manager(method="delete", cookie=cookie, key=key)
+        did_add = self.cookie_manager(method="delete", cookie=cookie, key=key, default=False)
+        if did_add:
+            del self.cookies[cookie]
 
-    def get_all(self, key="get_all") -> dict:
-        return self.cookie_manager(method="getAll", key=key)
+    def get_all(self, key="get_all"):
+        self.cookies = self.cookie_manager(method="getAll", key=key, default={})
+        return self.cookies

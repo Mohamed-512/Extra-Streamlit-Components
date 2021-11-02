@@ -1,5 +1,6 @@
 import streamlit as st
 import extra_streamlit_components as stx
+import datetime
 
 
 def show_router_controls():
@@ -35,12 +36,13 @@ def show_router_controls():
 def show_cookie_manager_controls():
     st.write("# Cookie Manager")
 
-    print("Making a new manager")
-    cookie_manager = stx.CookieManager()
-    cookie_manager.set("tmp", "test")
+    @st.cache(allow_output_mutation=True)
+    def get_manager():
+        return stx.CookieManager()
+
+    cookie_manager = get_manager()
 
     st.subheader("All Cookies:")
-
     cookies = cookie_manager.get_all()
     st.write(cookies)
 
@@ -49,25 +51,19 @@ def show_cookie_manager_controls():
     with c1:
         st.subheader("Get Cookie:")
         cookie = st.text_input("Cookie", key="0")
-
         clicked = st.button("Get")
-
         if clicked:
-            value = cookie_manager.get(cookie)
-            value = cookies.get(cookie)
+            value = cookie_manager.get(cookie=cookie)
             st.write(value)
     with c2:
         st.subheader("Set Cookie:")
         cookie = st.text_input("Cookie", key="1")
         val = st.text_input("Value")
-
         if st.button("Add"):
-            cookie_manager.set(cookie, val)
-
+            cookie_manager.set(cookie, val, expires_at=datetime.datetime(year=2022, month=2, day=2))
     with c3:
         st.subheader("Delete Cookie:")
         cookie = st.text_input("Cookie", key="2")
-
         if st.button("Delete"):
             cookie_manager.delete(cookie)
 
@@ -119,12 +115,13 @@ def show_stepper_bar():
     """)
 
 
-show_router_controls()
-# st.write("_______")
-# show_cookie_manager_controls()
-# st.write("_______")
-# show_top_bar()
-# st.write("_______")
-# show_bouncing_image()
-# st.write("_______")
-# show_stepper_bar()
+if __name__ == "__main__":
+    # show_router_controls()
+    # st.write("_______")
+    show_cookie_manager_controls()
+    # st.write("_______")
+    # show_top_bar()
+    # st.write("_______")
+    # show_bouncing_image()
+    # st.write("_______")
+    # show_stepper_bar()
