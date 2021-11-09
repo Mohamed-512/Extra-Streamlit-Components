@@ -124,5 +124,4 @@ if __name__ == "__main__":
     st.write("_______")
     show_bouncing_image()
     st.write("_______")
-    st.button("hi", kwargs={"__proto__": 1234, "__proto__.disabled": True, "disabled": True})
     show_stepper_bar()
