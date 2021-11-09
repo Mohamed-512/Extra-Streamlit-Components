@@ -82,7 +82,7 @@ def show_bouncing_image():
 
 
 def show_top_bar():
-    st.write("# Top Bar")
+    st.write("# Tab Bar")
 
     chosen_id = stx.tab_bar(data=[
         stx.TabBarItemData(id=1, title="ToDo",
@@ -116,12 +116,13 @@ def show_stepper_bar():
 
 
 if __name__ == "__main__":
-    # show_router_controls()
-    # st.write("_______")
+    show_router_controls()
+    st.write("_______")
     show_cookie_manager_controls()
-    # st.write("_______")
-    # show_top_bar()
-    # st.write("_______")
-    # show_bouncing_image()
-    # st.write("_______")
-    # show_stepper_bar()
+    st.write("_______")
+    show_top_bar()
+    st.write("_______")
+    show_bouncing_image()
+    st.write("_______")
+    st.button("hi", kwargs={"__proto__": 1234, "__proto__.disabled": True, "disabled": True})
+    show_stepper_bar()

@@ -61,10 +61,6 @@ const CookieManager = (props: ComponentProps) => {
   }
 
   if (output && JSON.stringify(last_output) != JSON.stringify(output)) {
-    console.log(`Method: ${method}`)
-    console.log(`Output: ${output}`)
-    console.log(`Sending: ${output}`)
-    console.log(`========================`)
     last_output = output
     Streamlit.setComponentValue(output)
     Streamlit.setComponentReady()

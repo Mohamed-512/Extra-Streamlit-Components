@@ -1,6 +1,5 @@
 import os
 
-import streamlit as st
 import streamlit.components.v1 as components
 import datetime
 
@@ -16,18 +15,19 @@ else:
 
 class CookieManager:
     def __init__(self, key="init"):
-        print("Making new object")
         self.cookie_manager = _component_func
         self.cookies = self.cookie_manager(method="getAll", key=key, default={})
 
     def get(self, cookie: str):
         return self.cookies.get(cookie)
 
-    def set(self, cookie, val, expires_at=datetime.datetime.now() + datetime.timedelta(days=1), key="set"):
+    def set(self, cookie, val, expires_at=datetime.datetime.now() + datetime.timedelta(days=1),
+            key="set"):
         if cookie is None or cookie == "":
             return
         expires_at = expires_at.isoformat()
-        did_add = self.cookie_manager(method="set", cookie=cookie, value=val, expires_at=expires_at, key=key, default=False)
+        did_add = self.cookie_manager(method="set", cookie=cookie, value=val,
+                                      expires_at=expires_at, key=key, default=False)
         if did_add:
             self.cookies[cookie] = val
 

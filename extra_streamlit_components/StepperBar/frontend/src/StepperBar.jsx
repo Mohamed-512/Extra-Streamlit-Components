@@ -94,7 +94,6 @@ class StepperBar extends StreamlitComponentBase {
                 StepIconProps={{
                   classes: {
                     cursor: "pointer",
-
                     root: classes.icon,
                     active: classes.activeIcon,
                     completed: classes.completedIcon,
