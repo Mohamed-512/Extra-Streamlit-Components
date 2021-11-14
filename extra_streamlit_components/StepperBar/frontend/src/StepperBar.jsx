@@ -76,7 +76,7 @@ class StepperBar extends StreamlitComponentBase {
   }
 
   render = () => {
-    let { classes } = this.props
+    let { classes, args: { is_vertical } } = this.props
 
     const { activeStep } = this.state
     const steps = this.state.steps
@@ -85,11 +85,12 @@ class StepperBar extends StreamlitComponentBase {
       <div className={classes.root}>
         <Stepper
           activeStep={activeStep}
-          alternativeLabel
+          alternativeLabel={!is_vertical}
           className={classes.root}
+          orientation={ is_vertical ? "vertical" : "horizontal"}
         >
           {steps.map((label, index) => (
-            <Step key={label} onClick={() => this.onClick(index)}>
+            <Step key={label} onClick={() => this.onClick(index)} >
               <StepLabel
                 StepIconProps={{
                   classes: {

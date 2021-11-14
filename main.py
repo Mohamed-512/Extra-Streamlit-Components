@@ -106,12 +106,27 @@ def show_top_bar():
 
 def show_stepper_bar():
     st.write("# Stepper Bar")
+    c1, c2, c3 = st.columns([1, 3, 1])
+    with c1:
+        st.write("Horizontal")
+    with c2:
+        is_vertical = (st.slider("Orientation", min_value=0, max_value=1, value=0) or 0) == 1
+    with c3:
+        st.write("Vertical")
 
-    val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"])
-    st.info(f"Phase #{val}")
+    if is_vertical:
+        c1, c2 = st.columns([1, 3])
+        with c1:
+            val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=is_vertical)
+        with c2:
+            st.info(f"Phase #{val}")
+    else:
+        val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=is_vertical)
+
+        st.info(f"Phase #{val}")
 
     st.code("""
-        val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"])
+        val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=False)
     """)
 
 
