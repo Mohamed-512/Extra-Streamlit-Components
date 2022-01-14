@@ -1,7 +1,5 @@
 # Extra-Streamlit-Components
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mohamed512)
-
 [![Downloads](https://pepy.tech/badge/extra-streamlit-components)](https://pepy.tech/project/extra-streamlit-components)
 
 An all-in-one place, to find complex or just not available components by default on streamlit.
@@ -119,3 +117,7 @@ Firstly, add `import extra_streamlit_components as stx`
   st.info(f"Phase #{val}")
   ```
   ![](Demo_Assets/stepper_bar_demo.gif)
+
+
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mohamed512)
