@@ -47,6 +47,8 @@ Firstly, add `import extra_streamlit_components as stx`
 
   To add an expiry date to a cookie use the `expires_at` parameter in the set function. By default, it will expire after 1 day.
   
+  **Security Note:** _In shared domains such as share.streamlit.io, other web developers can have access to the cookies you set and the same goes for you. This is not to be treaded as security bug but a circumstance the developer need to be aware of._
+  
     ```python
     import datetime
     st.write("# Cookie Manager")
