@@ -31,26 +31,36 @@ const styles = createStyles((theme) => ({
 }))
 
 class StepperBar extends StreamlitComponentBase {
-  state = { activeStep: 0, steps: [] }
+  state = { activeStep: 0, steps: [], lockSequence: true }
 
   componentDidMount() {
     this.setState((prev, state) => ({
       steps: this.props.args.steps,
       activeStep: this.props.args.default,
+      lockSequence: this.props.args.lock_sequence
     }))
   }
 
   onClick = (index) => {
-    const { activeStep } = this.state
+    const { activeStep, lockSequence } = this.state
 
-    if (index == activeStep + 1) {
-      this.setState(
-        (prev, state) => ({
-          activeStep: activeStep + 1,
-        }),
-        () => Streamlit.setComponentValue(this.state.activeStep)
-      )
-    } else if (index < activeStep) {
+    if(lockSequence){
+        if (index == activeStep + 1) {
+          this.setState(
+            (prev, state) => ({
+              activeStep: activeStep + 1,
+            }),
+            () => Streamlit.setComponentValue(this.state.activeStep)
+          )
+        } else if (index < activeStep) {
+          this.setState(
+            (prev, state) => ({
+              activeStep: index,
+            }),
+            () => Streamlit.setComponentValue(this.state.activeStep)
+          )
+        }
+    } else {
       this.setState(
         (prev, state) => ({
           activeStep: index,
