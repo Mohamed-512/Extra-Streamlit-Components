@@ -21,10 +21,13 @@ class CookieManager:
     def get(self, cookie: str):
         return self.cookies.get(cookie)
 
-    def set(self, cookie, val, expires_at=datetime.datetime.now() + datetime.timedelta(days=1),
-            key="set"):
+    def set(self, cookie, val, expires_at=None, key="set"):
         if cookie is None or cookie == "":
             return
+
+        if expires_at is None:
+            expires_at = datetime.datetime.now() + datetime.timedelta(days=1)
+
         expires_at = expires_at.isoformat()
         did_add = self.cookie_manager(method="set", cookie=cookie, value=val,
                                       expires_at=expires_at, key=key, default=False)
