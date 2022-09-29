@@ -19,10 +19,10 @@ const styles = createStyles((theme) => ({
     color: "grey",
     cursor: "pointer",
     "&$activeIcon": {
-      color: "var(--streamlit-primary-color)",
+      color: "var(--primary-color)",
     },
     "&$completedIcon": {
-      color: "var(--streamlit-primary-color)",
+      color: "var(--primary-color)",
     },
   },
 
@@ -74,10 +74,10 @@ class StepperBar extends StreamlitComponentBase {
     const { activeStep } = this.state
     const style = {}
     if (index == activeStep) {
-      style.color = "var(--streamlit-text-color)"
+      style.color = "var(--text-color)"
       style.fontStyle = "italic"
     } else if (index < activeStep) {
-      style.color = "var(--streamlit-text-color)"
+      style.color = "var(--text-color)"
       style.fontWeight = "bold"
     } else {
       style.color = "grey"
