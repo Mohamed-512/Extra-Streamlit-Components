@@ -1,14 +1,14 @@
+import React from "react"
 import {
   Streamlit,
   StreamlitComponentBase,
-  withStreamlitConnection,
+  withStreamlitConnection
 } from "streamlit-component-lib"
-import React from "react"
 
-import { withStyles, createStyles } from "@material-ui/core/styles"
-import Stepper from "@material-ui/core/Stepper"
 import Step from "@material-ui/core/Step"
 import StepLabel from "@material-ui/core/StepLabel"
+import Stepper from "@material-ui/core/Stepper"
+import { createStyles, withStyles } from "@material-ui/core/styles"
 
 const styles = createStyles((theme) => ({
   root: {
@@ -19,10 +19,10 @@ const styles = createStyles((theme) => ({
     color: "grey",
     cursor: "pointer",
     "&$activeIcon": {
-      color: "#f63366",
+      color: "var(--streamlit-primary-color)",
     },
     "&$completedIcon": {
-      color: "#f63366",
+      color: "var(--streamlit-primary-color)",
     },
   },
 
@@ -44,22 +44,22 @@ class StepperBar extends StreamlitComponentBase {
   onClick = (index) => {
     const { activeStep, lockSequence } = this.state
 
-    if(lockSequence){
-        if (index == activeStep + 1) {
-          this.setState(
-            (prev, state) => ({
-              activeStep: activeStep + 1,
-            }),
-            () => Streamlit.setComponentValue(this.state.activeStep)
-          )
-        } else if (index < activeStep) {
-          this.setState(
-            (prev, state) => ({
-              activeStep: index,
-            }),
-            () => Streamlit.setComponentValue(this.state.activeStep)
-          )
-        }
+    if (lockSequence) {
+      if (index == activeStep + 1) {
+        this.setState(
+          (prev, state) => ({
+            activeStep: activeStep + 1,
+          }),
+          () => Streamlit.setComponentValue(this.state.activeStep)
+        )
+      } else if (index < activeStep) {
+        this.setState(
+          (prev, state) => ({
+            activeStep: index,
+          }),
+          () => Streamlit.setComponentValue(this.state.activeStep)
+        )
+      }
     } else {
       this.setState(
         (prev, state) => ({
@@ -74,10 +74,10 @@ class StepperBar extends StreamlitComponentBase {
     const { activeStep } = this.state
     const style = {}
     if (index == activeStep) {
-      style.color = "#f63366"
+      style.color = "var(--streamlit-text-color)"
       style.fontStyle = "italic"
     } else if (index < activeStep) {
-      style.color = "#f63366"
+      style.color = "var(--streamlit-text-color)"
       style.fontWeight = "bold"
     } else {
       style.color = "grey"
@@ -97,7 +97,7 @@ class StepperBar extends StreamlitComponentBase {
           activeStep={activeStep}
           alternativeLabel={!is_vertical}
           className={classes.root}
-          orientation={ is_vertical ? "vertical" : "horizontal"}
+          orientation={is_vertical ? "vertical" : "horizontal"}
         >
           {steps.map((label, index) => (
             <Step key={label} onClick={() => this.onClick(index)} >
