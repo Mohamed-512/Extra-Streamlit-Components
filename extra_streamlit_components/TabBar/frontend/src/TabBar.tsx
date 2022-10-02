@@ -1,10 +1,10 @@
+import React, { ComponentProps, ReactNode } from "react"
+import ScrollMenu from "react-horizontal-scrolling-menu"
 import {
   Streamlit,
   StreamlitComponentBase,
-  withStreamlitConnection,
+  withStreamlitConnection
 } from "streamlit-component-lib"
-import React, { ComponentProps, ReactNode } from "react"
-import ScrollMenu from "react-horizontal-scrolling-menu"
 
 interface State {
   numClicks: number
@@ -63,7 +63,7 @@ class TabBar extends StreamlitComponentBase<State> {
         />
         <hr
           style={{
-            borderColor: "var(--streamlit-primary-color)",
+            borderColor: "var(--primary-color)",
           }}
         />
       </div>
