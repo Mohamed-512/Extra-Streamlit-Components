@@ -1,8 +1,8 @@
+import datetime
 import os
+from typing import Literal, Optional, Union
 
 import streamlit.components.v1 as components
-import datetime
-
 from extra_streamlit_components import IS_RELEASE
 
 if IS_RELEASE:
@@ -21,16 +21,49 @@ class CookieManager:
     def get(self, cookie: str):
         return self.cookies.get(cookie)
 
-    def set(self, cookie, val, expires_at=None, key="set"):
+    def set(
+        self,
+        cookie: str,
+        val: Union[str, int, float, bool],
+        key: str = "set",
+        path: str = "/",
+        expires_at: Optional[datetime.datetime] = None,
+        max_age: Optional[float] = None,
+        domain: Optional[str] = None,
+        secure: Optional[bool] = None,
+        same_site: Union[bool, None, Literal["lax", "strict"]] = "strict",
+    ):
+        """Sets a cookie with the given name and value.
+
+        Args:
+            cookie: The name of the cookie to set.
+            val: The value of the cookie.
+            key: The key to use for the component.
+            path: Cookie path. Use '/' as the path if you want your cookie to be accessible on all pages.
+            expires_at: Absolute expiration date for the cookie. Defaults to 1 day from now.
+            max_age: Relative max age of the cookie from when the client receives it in seconds.
+            domain: Domain for the cookie (sub.domain.com or .allsubdomains.com)
+            secure: Is only accessible through HTTPS?
+            same_site: Strict or Lax enforcement.
+        """
         if cookie is None or cookie == "":
             return
 
         if expires_at is None:
             expires_at = datetime.datetime.now() + datetime.timedelta(days=1)
 
-        expires_at = expires_at.isoformat()
-        did_add = self.cookie_manager(method="set", cookie=cookie, value=val,
-                                      expires_at=expires_at, key=key, default=False)
+        expires = expires_at.isoformat()
+        options = {
+            "path": path,
+            "expires": expires,
+            "maxAge": max_age,
+            "domain": domain,
+            "secure": secure,
+            "sameSite": same_site,
+        }
+        # Remove None's
+        options = {k: v for k, v in options.items() if v is not None}
+        did_add = self.cookie_manager(method="set", cookie=cookie, value=val, options=options, key=key, default=False)
         if did_add:
             self.cookies[cookie] = val
 
