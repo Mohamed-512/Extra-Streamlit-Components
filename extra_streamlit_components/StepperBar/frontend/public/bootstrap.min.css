@@ -5,9 +5,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 :root {
-  --stremlit-primary-color: #f63366;
-  --stremlit-primary-color-opaque: #f6336650;
-  --stremlit-text-color: #262730;
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -346,8 +343,8 @@ h6 {
 
 .menu-item.active {
   border: 1px green solid;
-  border-color: var(--stremlit-primary-color);
-  color: var(--stremlit-primary-color);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
   fill-opacity: 0.5;
   font-weight: 500;
 }
