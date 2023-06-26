@@ -46,7 +46,7 @@ class Router:
 
         _callable = self.routes.get(sys_route)
         if callable(_callable):
-            _callable()
+            _callable(self)
 
         # match_route = f"{sys_route}"
         # x = self.tmp.bind("", path_info=match_route).match()
