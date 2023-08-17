@@ -1,10 +1,13 @@
 # Extra-Streamlit-Components
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mohamed512)
-
 [![Downloads](https://pepy.tech/badge/extra-streamlit-components)](https://pepy.tech/project/extra-streamlit-components)
 
 An all-in-one place, to find complex or just not available components by default on streamlit.
+
+_Explained in details in my book [Web Application Development with Streamlit](https://amzn.to/3RQZiEa)_
+
+<a href="https://amzn.to/3RQZiEa"><img src="https://raw.githubusercontent.com/mkhorasani/streamlit_authenticator_test/main/Web%20App%20Web%20Dev%20with%20Streamlit%20-%20Cover.png" width="200" height="300"> 
+
 
 ## Components
 
@@ -46,6 +49,8 @@ Firstly, add `import extra_streamlit_components as stx`
   The long awaited between-sessions in-browser cookies store and manager! It stores cookies in a strict same-site behaviour. 
 
   To add an expiry date to a cookie use the `expires_at` parameter in the set function. By default, it will expire after 1 day.
+  
+  **Security Note:** _In shared domains such as share.streamlit.io, other web developers can have access to the cookies you set and the same goes for you. This is not to be treaded as security bug but a circumstance the developer need to be aware of._
   
     ```python
     import datetime
@@ -117,3 +122,7 @@ Firstly, add `import extra_streamlit_components as stx`
   st.info(f"Phase #{val}")
   ```
   ![](Demo_Assets/stepper_bar_demo.gif)
+
+
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mohamed512)

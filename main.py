@@ -114,14 +114,16 @@ def show_stepper_bar():
     with c3:
         st.write("Vertical")
 
+    is_sequence_locked = st.checkbox("Lock Sequence", value=True)
+
     if is_vertical:
         c1, c2 = st.columns([1, 3])
         with c1:
-            val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=is_vertical)
+            val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=is_vertical, lock_sequence=is_sequence_locked)
         with c2:
             st.info(f"Phase #{val}")
     else:
-        val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=is_vertical)
+        val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=is_vertical, lock_sequence=is_sequence_locked)
 
         st.info(f"Phase #{val}")
 

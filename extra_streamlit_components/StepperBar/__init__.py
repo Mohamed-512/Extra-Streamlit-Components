@@ -13,6 +13,6 @@ else:
     _component_func = components.declare_component("stepper_bar", url="http://localhost:3000")
 
 
-def stepper_bar(steps: List[str], is_vertical: bool = False) -> CustomComponent:
-    component_value = _component_func(steps=steps, is_vertical=is_vertical, default=0)
+def stepper_bar(steps: List[str], is_vertical: bool = False, lock_sequence: bool = True) -> CustomComponent:
+    component_value = _component_func(steps=steps, is_vertical=is_vertical, lock_sequence=lock_sequence, default=0)
     return component_value
