@@ -11,12 +11,12 @@ let last_output = null
 const cookies = new Cookies()
 
 const CookieManager = (props: ComponentProps) => {
-  const setCookie = (cookie, value, expires_at) => {
-    cookies.set(cookie, value, {
-      path: "/",
-      samesite: "strict",
-      expires: new Date(expires_at),
-    })
+  const setCookie = (cookie, value, options) => {
+    const converted_options = {
+      expires: new Date(options.expires),
+    }
+    options = { ...options, ...converted_options }
+    cookies.set(cookie, value, options)
     return true
   }
 
@@ -39,13 +39,13 @@ const CookieManager = (props: ComponentProps) => {
   const method = args["method"]
   const cookie = args["cookie"]
   const value = args["value"]
-  const expires_at = args["expires_at"]
+  const options = args["options"]
 
   let output = null
 
   switch (method) {
     case "set":
-      output = setCookie(cookie, value, expires_at)
+      output = setCookie(cookie, value, options)
       break
     case "get":
       output = getCookie(cookie)

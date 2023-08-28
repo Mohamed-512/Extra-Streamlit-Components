@@ -36,7 +36,7 @@ def show_router_controls():
 def show_cookie_manager_controls():
     st.write("# Cookie Manager")
 
-    @st.cache_resource
+    @st.cache_resource(hash_funcs={"_thread.RLock": lambda _: None})
     def get_manager():
         return stx.CookieManager()
 
