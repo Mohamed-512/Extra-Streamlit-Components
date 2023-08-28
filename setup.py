@@ -22,6 +22,6 @@ setuptools.setup(
     keywords=['Python', 'Streamlit', 'React', 'JavaScript'],
     python_requires=">=3.6",
     install_requires=[
-        "streamlit >= 0.86",
+        "streamlit >= 1.18.0",
     ],
 )

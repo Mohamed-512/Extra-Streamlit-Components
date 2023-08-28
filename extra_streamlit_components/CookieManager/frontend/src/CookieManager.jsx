@@ -3,7 +3,7 @@ import {
   ComponentProps,
   withStreamlitConnection,
 } from "streamlit-component-lib"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 
 import Cookies from "universal-cookie"
 

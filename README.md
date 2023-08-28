@@ -1,6 +1,8 @@
 # Extra-Streamlit-Components
 
-[![Downloads](https://pepy.tech/badge/extra-streamlit-components)](https://pepy.tech/project/extra-streamlit-components)
+[![Downloads](https://static.pepy.tech/badge/extra-streamlit-components)](https://static.pepy.tech/badge/extra-streamlit-components) 
+[![Downloads](https://static.pepy.tech/badge/extra-streamlit-components/month)](https://static.pepy.tech/badge/extra-streamlit-components/month) 
+[![Downloads](https://static.pepy.tech/badge/extra-streamlit-components/week)](https://static.pepy.tech/badge/extra-streamlit-components/week) 
 
 An all-in-one place, to find complex or just not available components by default on streamlit.
 
@@ -46,11 +48,10 @@ Firstly, add `import extra_streamlit_components as stx`
   ```
 
 - ### Cookie Manager
-  The long awaited between-sessions in-browser cookies store and manager! It stores cookies in a strict same-site behaviour. 
+  A browser cookie store and manager.
+  Built on [universal-cookie](https://www.npmjs.com/package/universal-cookie#setname-value-options) with the capability of using its options 
 
-  To add an expiry date to a cookie use the `expires_at` parameter in the set function. By default, it will expire after 1 day.
-  
-  **Security Note:** _In shared domains such as share.streamlit.io, other web developers can have access to the cookies you set and the same goes for you. This is not to be treaded as security bug but a circumstance the developer need to be aware of._
+  _**Security Note:** In shared domains such as share.streamlit.io, other web developers can have access to the cookies you set and the same goes for you. This is not to be treaded as security bug but a circumstance the developer need to be aware of._
   
     ```python
     import datetime
@@ -80,7 +81,7 @@ Firstly, add `import extra_streamlit_components as stx`
         cookie = st.text_input("Cookie", key="1")
         val = st.text_input("Value")
         if st.button("Add"):
-            cookie_manager.set(cookie, val, expires_at=datetime.datetime(year=2022, month=2, day=2))
+            cookie_manager.set(cookie, val) # Expires in a day by default
     with c3:
         st.subheader("Delete Cookie:")
         cookie = st.text_input("Cookie", key="2")

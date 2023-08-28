@@ -10,7 +10,7 @@ if IS_RELEASE:
     build_path = os.path.join(absolute_path, "frontend/build")
     _component_func = components.declare_component("cookie_manager", path=build_path)
 else:
-    _component_func = components.declare_component("cookie_manager", url="http://localhost:3001")
+    _component_func = components.declare_component("cookie_manager", url="http://localhost:3000")
 
 
 class CookieManager:
