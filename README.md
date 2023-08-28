@@ -14,9 +14,9 @@ _Explained in details in my book [Web Application Development with Streamlit](ht
 Firstly, add `import extra_streamlit_components as stx`
 
 - ### Router
-- Route to specific pages in Streamlit. This leverages the use of query parameters to make custom routes in your Streamlit application. For best experience, make sure to include the st.cache function decorator while initializing the Router object.
+- Route to specific pages in Streamlit. This leverages the use of query parameters to make custom routes in your Streamlit application. For best experience, make sure to include the st.cache_resource function decorator while initializing the Router object.
   ```python
-    @st.cache(allow_output_mutation=True, hash_funcs={"_thread.RLock": lambda _: None})
+    @st.cache_resource(hash_funcs={"_thread.RLock": lambda _: None})
     def init_router():
         return stx.Router({"/home": home, "/landing": landing})
 
@@ -56,7 +56,7 @@ Firstly, add `import extra_streamlit_components as stx`
     import datetime
     st.write("# Cookie Manager")
 
-    @st.cache(allow_output_mutation=True)
+    @st.cache_resource
     def get_manager():
         return stx.CookieManager()
 
