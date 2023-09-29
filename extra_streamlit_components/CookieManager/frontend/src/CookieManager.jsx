@@ -44,7 +44,7 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
   const options = args["options"]
   
   
-  useEffect(() => {
+  useMemo(() => {
     let output = null
     
     switch(method) {
