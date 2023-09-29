@@ -39,14 +39,14 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
   }
 
   const method = args["method"]
+  const cookie = args["cookie"]
+  const val = args["val"]  
+  const options = args["options"]
   
   
   useEffect(() => {
     let output = null
-    const cookie = args["cookie"]
-    const val = args["val"]  
-    const options = args["options"]
-
+    
     switch(method) {
       case "set":
         output = set(cookie, val, options)
@@ -65,7 +65,7 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
         output = deleteCookie(cookie)
       default:
           break
-  }}, [method]) 
+  }}, [method, cookie, val, options]) 
 
 
   return (      
