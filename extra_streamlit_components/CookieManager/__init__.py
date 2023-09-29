@@ -14,12 +14,17 @@ else:
 
 
 class CookieManager:
-    def __init__(self, key="init"):
+    def __init__(self):
         self.cookie_manager = _component_func
-        self.cookies = self.cookie_manager(method="getAll", key=key, default={})
-
-    def get(self, cookie: str):
-        return self.cookies.get(cookie)
+    
+    def get(self, cookie: str, key:str="get"):
+        if cookie == "" or cookie == None:
+            return
+        try:
+            value = self.cookie_manager(method="get", cookie=cookie, key=key)
+            return value
+        except:
+            return False
 
     def set(
         self,
@@ -54,7 +59,7 @@ class CookieManager:
 
         expires = expires_at.isoformat()
         options = {
-            "path": path,
+            "path": path, 
             "expires": expires,
             "maxAge": max_age,
             "domain": domain,
@@ -63,17 +68,21 @@ class CookieManager:
         }
         # Remove None's
         options = {k: v for k, v in options.items() if v is not None}
-        did_add = self.cookie_manager(method="set", cookie=cookie, value=val, options=options, key=key, default=False)
-        if did_add:
-            self.cookies[cookie] = val
+        try:
+            did_add = self.cookie_manager(method="set", cookie=cookie, val=val, options=options, key=key, default=False) 
+            return did_add
+        except:
+            return False
 
     def delete(self, cookie, key="delete"):
         if cookie is None or cookie == "":
             return
-        did_add = self.cookie_manager(method="delete", cookie=cookie, key=key, default=False)
-        if did_add:
-            del self.cookies[cookie]
+        try:
+            did_add = self.cookie_manager(method="delete", cookie=cookie, key=key, default=False)
+            return did_add
+        except:
+            return False
 
     def get_all(self, key="get_all"):
-        self.cookies = self.cookie_manager(method="getAll", key=key, default={})
-        return self.cookies
+        cookies = self.cookie_manager(method="getAll", key=key, default={})
+        return cookies
