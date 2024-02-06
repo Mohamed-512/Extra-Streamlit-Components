@@ -13,7 +13,6 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
   const cookies = new Cookies()
 
   const { args } = props
-  const return_cookie_set = args["return_cookie_set"] 
 
   const set = (cookie, val, options) => {
     const converted_options = {
@@ -43,6 +42,7 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
   const cookie = args["cookie"]
   const val = args["val"]  
   const options = args["options"]
+  const return_cookie = args["return_cookie"] 
   
   
   useMemo(() => {
@@ -51,7 +51,7 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
     switch(method) {
       case "set":
         output = set(cookie, val, options)
-        if (return_cookie_set){ 
+        if (return_cookie){ 
           Streamlit.setComponentValue(output)
           Streamlit.setComponentReady()
           }
@@ -68,7 +68,7 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
         break 
       case "delete":
         output = deleteCookie(cookie)
-        if (return_cookie_set){ 
+        if (return_cookie){ 
           Streamlit.setComponentValue(output)
           Streamlit.setComponentReady()
           }
