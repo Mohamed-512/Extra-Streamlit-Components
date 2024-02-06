@@ -13,6 +13,7 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
   const cookies = new Cookies()
 
   const { args } = props
+  const return_cookie_set = args["return_cookie_set"] 
 
   const set = (cookie, val, options) => {
     const converted_options = {
@@ -50,6 +51,10 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
     switch(method) {
       case "set":
         output = set(cookie, val, options)
+        if (return_cookie_set){ 
+          Streamlit.setComponentValue(output)
+          Streamlit.setComponentReady()
+          }
         break
       case "get":
         output = getCookie(cookie) 
@@ -63,6 +68,10 @@ const CookieManager:React.FC<ComponentProps> = (props) => {
         break 
       case "delete":
         output = deleteCookie(cookie)
+        if (return_cookie_set){ 
+          Streamlit.setComponentValue(output)
+          Streamlit.setComponentReady()
+          }
       default:
           break
   }}, [method, cookie, val, options]) 
