@@ -78,8 +78,8 @@ class CookieManager:
         if cookie is None or cookie == "":
             return
         try:
-            did_add = self.cookie_manager(method="delete", cookie=cookie, key=key, default=False)
-            return did_add
+            did_del = self.cookie_manager(method="delete", cookie=cookie, key=key, default=False)
+            return did_del
         except:
             return False
 
