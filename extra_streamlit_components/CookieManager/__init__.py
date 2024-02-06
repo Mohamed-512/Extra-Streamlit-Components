@@ -28,7 +28,7 @@ class CookieManager:
 
     def set(
         self,
-        return_cookie,
+        return_cookie=False,
         cookie: str,
         val: Union[str, int, float, bool],
         key: str = "set",
@@ -75,7 +75,7 @@ class CookieManager:
         except:
             return False
 
-    def delete(self, return_cookie, cookie, key="delete"):
+    def delete(self, return_cookie=False, cookie, key="delete"):
         if cookie is None or cookie == "":
             return
         try:
