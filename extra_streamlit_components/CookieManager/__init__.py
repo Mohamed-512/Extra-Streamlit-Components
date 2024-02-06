@@ -28,7 +28,7 @@ class CookieManager:
 
     def set(
         self,
-        return_cookie_set,
+        return_cookie,
         cookie: str,
         val: Union[str, int, float, bool],
         key: str = "set",
@@ -70,16 +70,16 @@ class CookieManager:
         # Remove None's
         options = {k: v for k, v in options.items() if v is not None}
         try:
-            did_add = self.cookie_manager(method="set", return_cookie_set=return_cookie_set, cookie=cookie, val=val, options=options, key=key, default=False) 
+            did_add = self.cookie_manager(method="set", return_cookie=return_cookie, cookie=cookie, val=val, options=options, key=key, default=False) 
             return did_add
         except:
             return False
 
-    def delete(self, return_cookie_set, cookie, key="delete"):
+    def delete(self, return_cookie, cookie, key="delete"):
         if cookie is None or cookie == "":
             return
         try:
-            did_del = self.cookie_manager(method="delete", return_cookie_set=return_cookie_set, cookie=cookie, key=key, default=False)
+            did_del = self.cookie_manager(method="delete", return_cookie=return_cookie, cookie=cookie, key=key, default=False)
             return did_del
         except:
             return False
