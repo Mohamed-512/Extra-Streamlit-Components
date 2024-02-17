@@ -3,7 +3,7 @@ import {
   ComponentProps,
   withStreamlitConnection,
 } from "streamlit-component-lib"
-import React, { useEffect } from "react"
+import React, { useEffect, useMemo } from "react"
 
 import Cookies from "universal-cookie"
 
@@ -60,11 +60,11 @@ const CookieManager = (props: ComponentProps) => {
       break
   }
 
-  if (output && JSON.stringify(last_output) != JSON.stringify(output)) {
+  if (output && JSON.stringify(last_output) !== JSON.stringify(output)) {
     last_output = output
     Streamlit.setComponentValue(output)
     Streamlit.setComponentReady()
-  }
+  }  
 
   useEffect(() => Streamlit.setFrameHeight())
   return <div></div>

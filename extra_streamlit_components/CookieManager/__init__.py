@@ -1,6 +1,6 @@
 import datetime
 import os
-from typing import Literal, Optional, Union
+from typing import Literal, Optional, Union, Dict
 
 import streamlit.components.v1 as components
 from extra_streamlit_components import IS_RELEASE
@@ -10,7 +10,9 @@ if IS_RELEASE:
     build_path = os.path.join(absolute_path, "frontend/build")
     _component_func = components.declare_component("cookie_manager", path=build_path)
 else:
-    _component_func = components.declare_component("cookie_manager", url="http://localhost:3000")
+    _component_func = components.declare_component(
+        "cookie_manager", url="http://localhost:3000"
+    )
 
 
 class CookieManager:
@@ -63,16 +65,47 @@ class CookieManager:
         }
         # Remove None's
         options = {k: v for k, v in options.items() if v is not None}
-        did_add = self.cookie_manager(method="set", cookie=cookie, value=val, options=options, key=key, default=False)
-        if did_add:
-            self.cookies[cookie] = val
+        self.cookie_manager(
+            method="set",
+            cookie=cookie,
+            value=val,
+            options=options,
+            key=key,
+            default=False,
+        )
+        self.cookies[cookie] = val
+
+    def batch_set(
+        self,
+        cookies: Dict[str, Union[str, int, float, bool]],
+        path: str = "/",
+        expires_at: Optional[datetime.datetime] = None,
+        max_age: Optional[float] = None,
+        domain: Optional[str] = None,
+        secure: Optional[bool] = None,
+        same_site: Union[bool, None, Literal["lax", "strict"]] = "strict",
+    ):
+        i = 0
+        for cookie, val in cookies.items():
+            self.set(
+                cookie,
+                val,
+                f"set_{i}",
+                path,
+                expires_at,
+                max_age,
+                domain,
+                secure,
+                same_site,
+            )
+            i += 1
 
     def delete(self, cookie, key="delete"):
         if cookie is None or cookie == "":
             return
-        did_add = self.cookie_manager(method="delete", cookie=cookie, key=key, default=False)
-        if did_add:
-            del self.cookies[cookie]
+        self.cookie_manager(method="delete", cookie=cookie, key=key, default=False)
+
+        del self.cookies[cookie]
 
     def get_all(self, key="get_all"):
         self.cookies = self.cookie_manager(method="getAll", key=key, default={})
