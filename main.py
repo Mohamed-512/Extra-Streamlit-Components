@@ -35,7 +35,9 @@ def show_router_controls():
 def show_cookie_manager_controls():
     st.write("# Cookie Manager")
 
-    @st.cache_resource(hash_funcs={"_thread.RLock": lambda _: None}, experimental_allow_widgets=True)
+    @st.cache_resource(
+        hash_funcs={"_thread.RLock": lambda _: None}, experimental_allow_widgets=True
+    )
     def get_manager():
         return stx.CookieManager()
 
@@ -59,7 +61,7 @@ def show_cookie_manager_controls():
         cookie = st.text_input("Cookie", key="1")
         val = st.text_input("Value")
         if st.button("Add"):
-            cookie_manager.set(cookie, val) # Expires in a day by default
+            cookie_manager.set(cookie, val)  # Expires in a day by default
     with c3:
         st.subheader("Delete Cookie:")
         cookie = st.text_input("Cookie", key="2")
@@ -71,36 +73,42 @@ def show_bouncing_image():
     st.write("# Bouncing Image")
 
     image_url = "https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.svg"
-    stx.bouncing_image(image_source=image_url, animate=True,
-                       animation_time=2000, height=145, width=500)
+    stx.bouncing_image(
+        image_source=image_url, animate=True, animation_time=2000, height=145, width=500
+    )
 
-    st.code("""
+    st.code(
+        """
     image_url = "https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.svg"
     stx.bouncing_image(image_source=image_url, animate=True, animation_time=2000, height=145, width=500)
-    """)
+    """
+    )
 
 
 def show_top_bar():
     st.write("# Tab Bar")
 
-    chosen_id = stx.tab_bar(data=[
-        stx.TabBarItemData(id=1, title="ToDo",
-                           description="Tasks to take care of"),
-        stx.TabBarItemData(id=2, title="Done",
-                           description="Tasks taken care of"),
-        stx.TabBarItemData(id=3, title="Overdue",
-                           description="Tasks missed out"),
-    ], default=1, return_type=int)
+    chosen_id = stx.tab_bar(
+        data=[
+            stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
+            stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
+            stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
+        ],
+        default=1,
+        return_type=int,
+    )
 
     st.info(f"chosen_id = {chosen_id}, type = {type(chosen_id)}")
 
-    st.code("""
+    st.code(
+        """
     chosen_id = stx.tab_bar(data=[
         stx.TabBarItemData(id=1, title="ToDo", description="Tasks to take care of"),
         stx.TabBarItemData(id=2, title="Done", description="Tasks taken care of"),
         stx.TabBarItemData(id=3, title="Overdue", description="Tasks missed out"),
     ], default=1)
-    """)
+    """
+    )
 
 
 def show_stepper_bar():
@@ -109,7 +117,9 @@ def show_stepper_bar():
     with c1:
         st.write("Horizontal")
     with c2:
-        is_vertical = (st.slider("Orientation", min_value=0, max_value=1, value=0) or 0) == 1
+        is_vertical = (
+            st.slider("Orientation", min_value=0, max_value=1, value=0) or 0
+        ) == 1
     with c3:
         st.write("Vertical")
 
@@ -118,17 +128,27 @@ def show_stepper_bar():
     if is_vertical:
         c1, c2 = st.columns([1, 3])
         with c1:
-            val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=is_vertical, lock_sequence=is_sequence_locked)
+            val = stx.stepper_bar(
+                steps=["Ready", "Get Set", "Go"],
+                is_vertical=is_vertical,
+                lock_sequence=is_sequence_locked,
+            )
         with c2:
             st.info(f"Phase #{val}")
     else:
-        val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=is_vertical, lock_sequence=is_sequence_locked)
+        val = stx.stepper_bar(
+            steps=["Ready", "Get Set", "Go"],
+            is_vertical=is_vertical,
+            lock_sequence=is_sequence_locked,
+        )
 
         st.info(f"Phase #{val}")
 
-    st.code("""
+    st.code(
+        """
         val = stx.stepper_bar(steps=["Ready", "Get Set", "Go"], is_vertical=False)
-    """)
+    """
+    )
 
 
 if __name__ == "__main__":
