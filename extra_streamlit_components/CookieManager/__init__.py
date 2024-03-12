@@ -2,6 +2,7 @@ import datetime
 import os
 from typing import Literal, Optional, Union, Dict
 
+import streamlit as st
 import streamlit.components.v1 as components
 from extra_streamlit_components import IS_RELEASE
 
@@ -21,6 +22,7 @@ class CookieManager:
         self.cookies = self.cookie_manager(method="getAll", key=key, default={})
 
     def get(self, cookie: str):
+        self._remove_extra_spacing()
         return self.cookies.get(cookie)
 
     def set(
@@ -54,6 +56,7 @@ class CookieManager:
         if expires_at is None:
             expires_at = datetime.datetime.now() + datetime.timedelta(days=1)
 
+        self._remove_extra_spacing()
         expires = expires_at.isoformat()
         options = {
             "path": path,
@@ -108,5 +111,16 @@ class CookieManager:
         del self.cookies[cookie]
 
     def get_all(self, key="get_all"):
+        self._remove_extra_spacing()
         self.cookies = self.cookie_manager(method="getAll", key=key, default={})
         return self.cookies
+
+    def _remove_extra_spacing(self):
+        st.markdown(
+            """ 
+            <style>
+                .element-container:has(iframe[height="0"]) { display: none; }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )

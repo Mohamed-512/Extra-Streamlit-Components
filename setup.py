@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="extra_streamlit_components",
-    version="0.1.60",
+    version="0.1.71",
     author="Mohamed Abdou",
     author_email="matex512@gmail.com",
     description="An all-in-one place, to find complex or just natively unavailable components on streamlit.",
@@ -19,7 +19,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    keywords=['Python', 'Streamlit', 'React', 'JavaScript'],
+    keywords=["Python", "Streamlit", "React", "JavaScript"],
     python_requires=">=3.6",
     install_requires=[
         "streamlit >= 1.18.0",
