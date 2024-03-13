@@ -49,7 +49,7 @@ class Router:
 
         _callable = self.routes.get(sys_route)
         if callable(_callable):
-            _callable()
+            _callable(self)
 
         # match_route = f"{sys_route}"
         # x = self.tmp.bind("", path_info=match_route).match()
@@ -70,10 +70,11 @@ class Router:
         route = self.get_nav_query_param()
         return route
 
-    def route(self, new_route):
+    def route(self, new_route, do_rerun=True):
         if new_route[0] != "/":
             new_route = "/" + new_route
         st.session_state["stx_router_route"] = new_route
         st.query_params["nav"] = new_route
         time.sleep(0.1)  # Needed for URL param refresh
-        st.experimental_rerun()
+        if do_rerun:
+            st.experimental_rerun()

@@ -8,7 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+# build/
 develop-eggs/
 dist/
 downloads/
@@ -136,4 +136,4 @@ package-lock.json
 extra_streamlit_components/setup.*
 build_and_upload_to_twine*
 extra_streamlit_components/*/frontend/node_modules/
-extra_streamlit_components/*/frontend/build/
+# extra_streamlit_components/*/frontend/build/
