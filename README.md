@@ -8,7 +8,7 @@ An all-in-one place, to find complex or just not available components by default
 
 _Explained in details in my book [Web Application Development with Streamlit](https://amzn.to/3RQZiEa)_
 
-<a href="https://amzn.to/3RQZiEa"><img src="https://raw.githubusercontent.com/mkhorasani/streamlit_authenticator_test/main/Web%20App%20Web%20Dev%20with%20Streamlit%20-%20Cover.png" width="200" height="300"> 
+<a href="https://amzn.to/3RQZiEa"><img src="https://raw.githubusercontent.com/mkhorasani/streamlit_authenticator_test/main/Web%20App%20Web%20Dev%20with%20Streamlit%20-%20Cover.png" width="200" height="300"></a> 
 
 
 ## Components
