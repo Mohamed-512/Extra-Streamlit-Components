@@ -57,7 +57,7 @@ Firstly, add `import extra_streamlit_components as stx`
     import datetime
     st.write("# Cookie Manager")
 
-    @st.cache_resource
+    @st.fragment
     def get_manager():
         return stx.CookieManager()
 

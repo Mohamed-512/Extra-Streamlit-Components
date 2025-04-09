@@ -76,4 +76,4 @@ class Router:
         st.session_state["stx_router_route"] = new_route
         st.query_params["nav"] = new_route
         time.sleep(0.1)  # Needed for URL param refresh
-        st.experimental_rerun()
+        st.rerun()
